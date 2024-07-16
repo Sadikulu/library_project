@@ -1,4 +1,4 @@
-package com.lbry.library_project;
+package com.lib;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
