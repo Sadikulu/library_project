@@ -1,13 +1,11 @@
 package com.lib.domain;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.persistence.*;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -16,6 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name="t_books")
 public class Books {
 
     @Id
@@ -51,7 +50,7 @@ public class Books {
     private Set<ImageFile> image;
 
     @Column
-    private Boolean loanable;
+    private Boolean loanable=true;
 
     @Column
     private String shelfCode;
@@ -67,5 +66,6 @@ public class Books {
 
     @Column
     private boolean builtIn=false;
+
 
 }

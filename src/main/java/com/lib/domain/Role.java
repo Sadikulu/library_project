@@ -6,26 +6,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name="t_author")
-public class Author {
+@Table(name = "t_roles")
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 80, nullable = false)
-    String name;
-
-    @OneToMany(orphanRemoval = true, mappedBy = "author")
-    private List<Books> loans = new ArrayList<>();
+    private RoleType name;
 
 
 }

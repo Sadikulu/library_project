@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import java.util.Set;
 
 @Getter
@@ -39,16 +40,10 @@ public class BooksRequest {
 
     private Set<String> imageId;
 
-    @NotBlank
-    private Boolean loanable;
-
     @Size(min = 6, max = 6)
     @Pattern(regexp = "\\d{2}-\\d{3}")
     @NotBlank
     private String shelfCode;
-
-    @NotBlank
-    private Boolean active;
 
     @NotBlank
     private Boolean featured;

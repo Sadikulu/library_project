@@ -1,5 +1,8 @@
 package com.lib.dto;
 
+import com.lib.domain.Author;
+import com.lib.domain.Category;
+import com.lib.domain.Publisher;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,15 +25,15 @@ public class BooksDTO {
 
     private Integer pageCount;
 
-    private BooksAuthorDTO author;
+    private Author author;
 
-    private BooksPublisherDTO publisher;
+    private Publisher publisher;
 
     private Integer publishDate;
 
-    private BooksCategoryDTO category;
+    private Category category;
 
-    private Set<ShowcaseImageDTO> image;
+    private Set<String> image;
 
     private Boolean loanable;
 
@@ -43,4 +46,6 @@ public class BooksDTO {
     private LocalDateTime createDate;
 
     private boolean builtIn;
+
+
 }

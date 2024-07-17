@@ -1,10 +1,10 @@
 package com.lib.domain;
 
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import javax.persistence.*;
 
 @Getter
 @Setter
@@ -28,5 +28,6 @@ public class ImageData {
     public ImageData(Long id) {
         this.id=id;
     }
+
 
 }

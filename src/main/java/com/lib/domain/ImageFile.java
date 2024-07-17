@@ -1,19 +1,19 @@
 package com.lib.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name="t_imagefiles")
 public class ImageFile {
 
     @Id
@@ -25,10 +25,9 @@ public class ImageFile {
 
     private String type;
 
-    private boolean showcase;
-
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private ImageData imageData;
+
 
 }
