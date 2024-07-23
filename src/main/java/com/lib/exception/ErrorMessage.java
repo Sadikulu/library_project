@@ -17,4 +17,8 @@ public class ErrorMessage {
 	public final static String IMAGE_USED_MESSAGE = "Image already used";
 
 	public final static String BOOK_CONFLICT_EXCEPTION = "Book '%s' is already exist";
+
+	public final static String EMAIL_ALREADY_EXIST_MESSAGE="Email: %s already exist";
+
+	public final static String NOT_PERMITTED_METHOD_MESSAGE = "You don't have any permission to change this data";
 }

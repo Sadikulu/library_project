@@ -14,7 +14,6 @@ public class RoleService {
 
     private final RoleRepository roleRepository;
 
-
     public Role findByRoleName(RoleType roleType) {
         return roleRepository.findByName(roleType).orElseThrow(() ->
                 new ResourceNotFoundException(String.format(

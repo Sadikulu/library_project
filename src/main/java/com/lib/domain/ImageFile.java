@@ -30,4 +30,9 @@ public class ImageFile {
     private ImageData imageData;
 
 
+    public ImageFile(String name, String type, ImageData imageData) {
+        this.name = name;
+        this.type = type;
+        this.imageData = imageData;
+    }
 }

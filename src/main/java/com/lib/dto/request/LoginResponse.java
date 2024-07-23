@@ -1,4 +1,4 @@
-package com.lib.dto;
+package com.lib.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ImageFileDTO {
+public class LoginResponse {
 
-    private String name;
-
-    private String uri;
-
-    private String type;
-
+	private String token;
 }

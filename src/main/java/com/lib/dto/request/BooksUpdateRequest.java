@@ -9,13 +9,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class BooksRequest {
+public class BooksUpdateRequest {
 
     @NotBlank
     @Size(min = 2, max = 80, message = "Your book name ${validatedValue} must be between ${min} and ${max} characters.")
@@ -47,7 +45,9 @@ public class BooksRequest {
     private String shelfCode;
 
     @NotNull
-    private Boolean featured;
+    private Boolean active;
 
+    @NotNull
+    private Boolean featured;
 
 }

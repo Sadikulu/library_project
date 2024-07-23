@@ -6,7 +6,7 @@ public enum RoleType {
     ROLE_EMPLOYEE("Employee"),
     ROLE_ADMIN("Administrator");
 
-    private String name;
+    private final String name;
 
     private RoleType(String name) {
         this.name=name;

@@ -35,8 +35,8 @@ public class SecurityConfig {
 				.csrf(AbstractHttpConfigurer::disable)
 				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
-						.requestMatchers("/login", "/register", "/contactmessage/visitors",
-								"/files/download/**", "files/display/**", "agentImg/display/**",
+						.requestMatchers("/login", "/register", "/contactmessage/visitors","/books/**",
+								"/image/download/**", "image/display/**", "agentImg/display/**",
 								"/property/visitors/**", "/property/search").permitAll()
 						.anyRequest().authenticated()
 				);

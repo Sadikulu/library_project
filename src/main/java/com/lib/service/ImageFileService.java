@@ -28,48 +28,37 @@ public class ImageFileService {
     private final ImageFileRepository imageFileRepository;
     private final ImageFileMapper imageFileMapper;
 
-
-    public Set<String> saveImage(MultipartFile[] file) {
-        ImageFile imageFile=null;
-        Set<ImageFile> images = new HashSet<>();
-        for (MultipartFile each:file) {
-            String fileName = null;
-            try
-            {
-                imageFile = new ImageFile();
-                fileName = StringUtils.cleanPath(Objects.requireNonNull(each.getOriginalFilename()));
-                ImageData imageData = new ImageData(each.getBytes());
-                imageFile.setName(fileName);
-                imageFile.setType(each.getContentType());
-                imageFile.setImageData(imageData);
-            }catch (IOException e){
-                throw new ImageFileException(e.getMessage());
-            }
-            imageFileRepository.save(imageFile);
-            images.add(imageFile);
+    public String saveImage(MultipartFile file) {
+        ImageFile imageFile = null;
+        String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+        try {
+            ImageData imData = new ImageData(file.getBytes());
+            imageFile = new ImageFile(fileName, file.getContentType(), imData);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
         }
-        return images.stream().map(ImageFile::getId).collect(Collectors.toSet());
+        imageFileRepository.save(imageFile);
+        return imageFile.getId();
     }
 
     public ImageFile getImageById(String id) {
-        return imageFileRepository.findById(id).orElseThrow(() ->
-                new ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, id)));
+        return imageFileRepository.findById(id).orElseThrow(
+                () -> new ResourceNotFoundException(String.format(ErrorMessage.IMAGE_NOT_FOUND_MESSAGE, id)));
+
     }
 
     public List<ImageFileDTO> getAllImages() {
-        List<ImageFile> imageList = imageFileRepository.findAll();
-        return imageList.stream().map(imgFile ->{
-           String imageUri= ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/image/download/")
-                    .path(imgFile.getId())
-                    .toUriString();
-            return new ImageFileDTO(imgFile.getName(),imageUri,imgFile.getType());
-        } ).collect(Collectors.toList());
+        List<ImageFile> imageFiles = imageFileRepository.findAll();
+        return imageFiles.stream().map(imFile -> {
+            String imageUri = ServletUriComponentsBuilder.
+                    fromCurrentContextPath().
+                    path("/files/download/").path(imFile.getId()).toUriString();
+            return new ImageFileDTO(imFile.getName(), imageUri, imFile.getType());
+        }).collect(Collectors.toList());
     }
 
-
     public ImageFileDTO removeById(String id) {
-        ImageFile imageFile =  getImageById(id);
+        ImageFile imageFile = getImageById(id);
         ImageFileDTO imageFileDTO=imageFileMapper.imageFileToImageFileDTO(imageFile);
         imageFileRepository.delete(imageFile);
         return imageFileDTO;

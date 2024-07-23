@@ -32,7 +32,7 @@ public class User {
     private String lastName;
 
     @Column
-    private Integer score;
+    private Integer score=0;
 
     @Column
     private String address;

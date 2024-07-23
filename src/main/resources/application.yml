@@ -25,6 +25,7 @@ spring:
     multipart:
       max-file-size: 2MB
       max-request-size: 2MB
+      enabled: true
 
 logging:
   file:
@@ -52,7 +53,7 @@ management: #actuator
 
 library-project:
   app:
-    jwtSecret: library-project@!23
+    jwtSecret: libraryproject123YonetimKadrosuBuKutuphaneProjesiniYaptiOnaGore
     jwtExpirationMs: 86400000
 
 info:

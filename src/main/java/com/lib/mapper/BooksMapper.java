@@ -8,6 +8,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,8 @@ public interface BooksMapper {
     BooksDTO booksToBooksDTO(Books books);
 
     Books booksRequestToBooks(BooksRequest booksRequest);
+
+    List<BooksDTO> booksListToBooksDTOList(List<Books> booksList);
 
     @Named("getImageAsString")
     public static Set<String> getImageAsString(Set<ImageFile> images) {
