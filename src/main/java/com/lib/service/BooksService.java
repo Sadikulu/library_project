@@ -9,10 +9,7 @@ import com.lib.exception.ConflictException;
 import com.lib.exception.ErrorMessage;
 import com.lib.exception.ResourceNotFoundException;
 import com.lib.mapper.BooksMapper;
-import com.lib.repository.AuthorRepository;
-import com.lib.repository.BooksRepository;
-import com.lib.repository.CategoryRepository;
-import com.lib.repository.PublisherRepository;
+import com.lib.repository.*;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -38,6 +35,7 @@ public class BooksService {
     private final CategoryRepository categoryRepository;
     private final PublisherRepository publisherRepository;
     private final EntityManager entityManager;
+    private final LoansRepository loansRepository;
 
 //    public BooksService(BooksRepository booksRepository, ImageFileService imageFileService, BooksMapper booksMapper, AuthorRepository authorRepository, CategoryRepository categoryRepository, PublisherRepository publisherRepository) {
 //        this.booksRepository = booksRepository;
@@ -220,9 +218,16 @@ public class BooksService {
 
     public BooksDTO deleteBooksById(Long id) {
         Books books=findBooksById(id);
+
+        List<Loans> loansList=loansRepository.findLoansByBooksId(id);
+        if(!loansList.isEmpty()){
+            throw new BadRequestException(ErrorMessage.BOOK_USED_BY_LOANS);
+        }
+
         if(books.isBuiltIn()){
             throw new BadRequestException(ErrorMessage.NOT_PERMITTED_METHOD_MESSAGE);
         }
+
         BooksDTO booksDTO=booksMapper.booksToBooksDTO(books);
         booksRepository.delete(books);
         return booksDTO;

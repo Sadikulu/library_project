@@ -49,6 +49,10 @@ public class Books {
     @JoinColumn(name = "books_id")
     private Set<ImageFile> image;
 
+    @OneToMany(orphanRemoval = true)
+    @JoinColumn(name = "book_id")
+    private Set<Loans> loans;
+
     @Column
     private Boolean loanable=true;
 

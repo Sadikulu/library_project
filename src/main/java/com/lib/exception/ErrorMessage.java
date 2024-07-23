@@ -21,4 +21,6 @@ public class ErrorMessage {
 	public final static String EMAIL_ALREADY_EXIST_MESSAGE="Email: %s already exist";
 
 	public final static String NOT_PERMITTED_METHOD_MESSAGE = "You don't have any permission to change this data";
+
+	public final static String BOOK_USED_BY_LOANS = "It cannot be deleted as it is used for book use.";
 }
